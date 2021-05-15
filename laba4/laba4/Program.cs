@@ -8,7 +8,6 @@ namespace laba4
     {
         [DllImport("User32.dll")]
         public static extern int GetAsyncKeyState(Int32 i);
-        public static long longnumberOfKeyStrokes = 0;
         static void Main(string[] args)
         {
             Console.Write("Нажатые клавиши: ");
