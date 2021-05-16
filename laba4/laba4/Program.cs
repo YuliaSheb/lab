@@ -21,7 +21,6 @@ namespace laba4
             {
                 using (StreamWriter streamWriter = File.CreateText(path))
                 {
-
                 }
             }
             while (true)
