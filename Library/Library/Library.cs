@@ -5,8 +5,6 @@ namespace Library
     {
         public static void math()
         {
-            unsafe
-            {
                 public int Sum(int a, int b)
                 {
                     return a + b;
@@ -27,7 +25,6 @@ namespace Library
                 {
                     return a % b;
                 }
-            }
-        }
-    }
+         }
+     }
 }
