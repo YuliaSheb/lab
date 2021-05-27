@@ -8,7 +8,7 @@ namespace laba5
             int sw = 0;
             while (sw != 5)
             {
-                Console.WriteLine("1 - Programmmer\n2 - Doctor\n3 - Economist\n4 - Lawyer\n5 - Exit");
+                Console.WriteLine("1 - Programmmer\n2 - Economist\n3 - Lawyer\n4 - Doctor\n5 - Exit");
                 try
                 {
                     sw = Convert.ToInt32(Console.ReadLine());
