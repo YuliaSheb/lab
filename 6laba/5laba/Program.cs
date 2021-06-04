@@ -116,7 +116,7 @@ namespace laba5
                     case 3:
                         Lawyer lawyer = new Lawyer("BSU", "International right", "Minsk", "Anastasia", "Shurova", 18);
                         Console.WriteLine(lawyer);
-                        Console.WriteLine("Number of laboratory works in semester 2 - 7");
+                        Console.WriteLine("Number of laboratory works in semester 2 - 17");
                         Console.WriteLine("Average lead time:");
                         lawyer.Lab(17);
                         if (lawyer.Time == 1)
@@ -163,7 +163,7 @@ namespace laba5
                     case 4:
                         Doctor doctor = new Doctor("GSMU", "Pediatrics", "Molodechno", "Anastasia", "Savenok", 18);
                         Console.WriteLine(doctor);
-                        Console.WriteLine("Number of laboratory works in semester 2 - 7");
+                        Console.WriteLine("Number of laboratory works in semester 2 - 13");
                         Console.WriteLine("Average lead time:");
                         doctor.Lab(13);
                         if (doctor.Time == 1)
