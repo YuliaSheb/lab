@@ -118,7 +118,7 @@ namespace laba5
                         Console.WriteLine(lawyer);
                         Console.WriteLine("Number of laboratory works in semester 2 - 7");
                         Console.WriteLine("Average lead time:");
-                        lawyer.Lab(7);
+                        lawyer.Lab(17);
                         if (lawyer.Time == 1)
                         {
                             Console.WriteLine(lawyer.Time + " hour");
@@ -165,7 +165,7 @@ namespace laba5
                         Console.WriteLine(doctor);
                         Console.WriteLine("Number of laboratory works in semester 2 - 7");
                         Console.WriteLine("Average lead time:");
-                        doctor.Lab(7);
+                        doctor.Lab(13);
                         if (doctor.Time == 1)
                         {
                             Console.WriteLine(doctor.Time + " hour");
