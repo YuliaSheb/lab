@@ -70,7 +70,7 @@ namespace Parik
             }
             Console.WriteLine("В очереди осталось "+sum+" человек");
             Console.WriteLine("Парикмахер стрижет клиента за " + t + " минут:");
-            foreach (Info p in people)
+            foreach (Info p in sortedUsers)
             {
                 int temp;
                 temp = p.Time_m + t;
