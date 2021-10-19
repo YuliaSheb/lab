@@ -11,76 +11,58 @@ namespace Parik
         static void Main(string[] args)
         {
             Console.WriteLine("Добро пожаловать в парикмахерскую!");
-            int N,t=20;
+            int N, time=0, time_m=0, k, terpenie;
             Console.WriteLine("Количество клиентов:");
             N = Convert.ToInt32(Console.ReadLine());
-            Info info = new Info();
-            List<Info> people = new List<Info>(N);
+            Random rnd = new Random();
+            Queue<Info> queue = new Queue<Info>();
             for (int i = 0; i < N; i++)
             {
-                int k = i + 1;
-                Console.WriteLine("Время прихода  " + k + " клиента:");
+                int n = i + 1;
+                Console.WriteLine(n + " клиент:");
                 Console.WriteLine("Представтесь:");
-                info.Name = Console.ReadLine();
-                Console.WriteLine("Часы:");
-                info.Time = Convert.ToInt32(Console.ReadLine());
-                while ((info.Time <= 0) || (info.Time >= 23))
+                string name = Console.ReadLine();
+                k=rnd.Next(0,15);
+                time += k;
+                if (time > 23)
                 {
-                    Console.WriteLine("Неправильный ввод");
-                    info.Time = Convert.ToInt32(Console.ReadLine());
+                    time = 23;
                 }
-                Console.WriteLine("Минуты:");
-                info.Time_m = Convert.ToInt32(Console.ReadLine());
-                while ((info.Time_m <= 0) || (info.Time_m >= 59))
+                time_m += k;
+                while (time_m > 60)
                 {
-                    Console.WriteLine("Неправильный ввод");
-                    info.Time_m = Convert.ToInt32(Console.ReadLine());
+                    time_m -= 60;
                 }
                 Console.WriteLine("Терпение клиента:");
-                info.Terpenie = Convert.ToInt32(Console.ReadLine());
-                while ((info.Terpenie < 0) || (info.Terpenie >= 100))
+                terpenie = Convert.ToInt32(Console.ReadLine());
+                queue.Enqueue(new Info(name, time, time_m, terpenie) { Name = name, Time = time, Time_m = time_m, Terpenie = terpenie });
+            }
+            Console.WriteLine("Сейчас в очереди {0} человек(а)", queue.Count);
+            foreach (Info p in queue)
+            {
+                Console.WriteLine("Клиент " + p.Name + " пришел в " + p.Time + "." + p.Time_m + "  Терпение " + p.Terpenie);
+            }
+            Console.WriteLine("*****************************************************");
+            foreach (Info d in queue)
+            {
+                while (queue.Count > 0)
                 {
-                    Console.WriteLine("Неправильный ввод");
-                    info.Terpenie = Convert.ToInt32(Console.ReadLine());
-                }
-                people.Add(new Info() { Name = info.Name, Time = info.Time, Time_m = info.Time_m, Terpenie = info.Terpenie });
-            }
-
-            var sortedUsers = from u in people
-                              orderby u.Time
-                              select u;
-
-            foreach (Info u in sortedUsers)
-            {
-                Console.WriteLine($"{u.Name} {u.Time}.{u.Time_m}, {u.Terpenie}");
-            }
-            int sum = 0,n=1;
-            foreach (Info p in sortedUsers)
-            {
-                    if (sum > p.Terpenie)
+                    if ((d.Terpenie > queue.Count)||(d.Time+20>d.Time))
                     {
-                        Console.WriteLine("Клиент " + p.Name + " ушел");
-                        people.RemoveAt(n);
+                        Info person = queue.Dequeue();
+                        Console.WriteLine("Клиент " + person.Name + "  ушел");
+                        Console.WriteLine("*****************************************************");
                     }
-                    else
+
+                    Console.WriteLine("Сейчас в очереди {0} человек(а)", queue.Count);
+                    foreach (Info pp in queue)
                     {
-                        sum++;
+                        Console.WriteLine("Клиент " + pp.Name + " пришел в " + pp.Time + "." + pp.Time_m + "  Терпение " + pp.Terpenie);
                     }
-                n++;
-            }
-            Console.WriteLine("В очереди осталось "+sum+" человек");
-            Console.WriteLine("Парикмахер стрижет клиента за " + t + " минут:");
-            foreach (Info p in sortedUsers)
-            {
-                int temp;
-                temp = p.Time_m + t;
-                if (temp>60)
-                {
-                    p.Time++;
-                    temp -= 60;
+                    Console.WriteLine("*****************************************************");
                 }
-                Console.WriteLine(info.Name + " вышел из парикмахерской в "+p.Time+"."+temp);
             }
+            Console.WriteLine("Рабочий день окончен");
             Console.ReadLine();
             Console.ReadLine();
         }
