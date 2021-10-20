@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,59 +12,141 @@ namespace Parik
         static void Main(string[] args)
         {
             Console.WriteLine("Добро пожаловать в парикмахерскую!");
-            int N, time=0, time_m=0, k, terpenie;
-            Console.WriteLine("Количество клиентов:");
-            N = Convert.ToInt32(Console.ReadLine());
-            Random rnd = new Random();
-            Queue<Info> queue = new Queue<Info>();
-            for (int i = 0; i < N; i++)
+            Queue<string> queue = new Queue<string>();
+            /* List<string> list = new List<string>();
+             string[] lines = File.ReadAllLines("queue.txt");
+             foreach (string s in lines)
+             {
+                 list.Add(s);
+             }
+             foreach (string i in list)
+             {
+                 Console.WriteLine(i);
+             }
+             Console.ReadLine();*/
+            string[] lines = File.ReadAllLines("queue.txt");
+            string[,] num = new string[lines.Length, lines[0].Split(' ').Length];
+            for (int i = 0; i < lines.Length; i++)
             {
-                int n = i + 1;
-                Console.WriteLine(n + " клиент:");
-                Console.WriteLine("Представтесь:");
-                string name = Console.ReadLine();
-                k=rnd.Next(0,15);
-                time += k;
-                if (time > 23)
+                string[] temp = lines[i].Split(' ');
+                for (int j = 0; j < temp.Length; j++)
                 {
-                    time = 23;
+                    num[i, j] = temp[j];
                 }
-                time_m += k;
-                while (time_m > 60)
+            }
+            Console.WriteLine("Клиенты:");
+            Console.WriteLine("Имя:  Часы:   Минуты: Терпение:");
+            int rows = num.GetUpperBound(0) + 1;
+           int columns = num.Length / rows;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
                 {
-                    time_m -= 60;
+                    Console.Write($"{num[i, j]} \t");
                 }
-                Console.WriteLine("Терпение клиента:");
-                terpenie = Convert.ToInt32(Console.ReadLine());
-                queue.Enqueue(new Info(name, time, time_m, terpenie) { Name = name, Time = time, Time_m = time_m, Terpenie = terpenie });
+                queue.Enqueue(num[i,0]);
+                Console.WriteLine();
             }
-            Console.WriteLine("Сейчас в очереди {0} человек(а)", queue.Count);
-            foreach (Info p in queue)
+            int k = 1;
+            int time = 0;
+            int time_m = 0;
+            for (int i = 0; i < rows; i++)
             {
-                Console.WriteLine("Клиент " + p.Name + " пришел в " + p.Time + "." + p.Time_m + "  Терпение " + p.Terpenie);
-            }
-            Console.WriteLine("*****************************************************");
-            foreach (Info d in queue)
-            {
-                while (queue.Count > 0)
+                int terpenie = Convert.ToInt32(num[i, 3]);
+                int time1 = Convert.ToInt32(num[i , 1]);
+                int time1_m = Convert.ToInt32(num[i , 2]);
+                int time_r = time1 - time;
+                if (time_r < 0)
                 {
-                    if ((d.Terpenie > queue.Count)||(d.Time+20>d.Time))
+                    time_r = time - time1;
+                }
+                int time_m_r = time1_m - time_m;
+                if (time_m_r<0)
+                {
+                    time_m_r = time_m - time1_m;
+                }
+                if ((time_r == 0) && (time_m_r == 0))
+                {
+                    time1_m += 20;
+                    if (time1_m >= 60)
                     {
-                        Info person = queue.Dequeue();
-                        Console.WriteLine("Клиент " + person.Name + "  ушел");
-                        Console.WriteLine("*****************************************************");
+                        time1_m -= 60;
+                        time1++;
                     }
+                    if (k > terpenie)
+                    {
+                        Console.WriteLine("Клиент " + num[i, 0] + " не дождался своей очереди и ушел");
+                        string queueElemen = queue.Dequeue();
+                        k--;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Клиент " + num[i, 0] + " ушел в " + time1 + "." + time1_m);
+                        string queueEleme = queue.Dequeue();
+                        k--;
+                    }
+                }
+                else if ((time_r>0)||(time_m_r>20))
+                { 
+                        time1_m += 20;
+                        if (time1_m >= 60)
+                        {
 
-                    Console.WriteLine("Сейчас в очереди {0} человек(а)", queue.Count);
-                    foreach (Info pp in queue)
-                    {
-                        Console.WriteLine("Клиент " + pp.Name + " пришел в " + pp.Time + "." + pp.Time_m + "  Терпение " + pp.Terpenie);
-                    }
-                    Console.WriteLine("*****************************************************");
+                            time1_m -= 60;
+                            time1++;
+                        }
+                        if (k > terpenie)
+                        {
+                            Console.WriteLine("Клиент " + num[i, 0] + " не дождался своей очереди и ушел");
+                            string queueElem = queue.Dequeue();
+                            k--;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Клиент " + num[i, 0] + " ушел в " + time1 + "." + time1_m);
+                            string queueEle = queue.Dequeue();
+                            k--;
+                        }
                 }
+                else if ((time_r==0)&&(time_m_r<20))
+                {
+                    time1_m += time_m_r;
+                    if (time1_m >= 60)
+                    {
+
+                        time1_m -= 60;
+                        time1++;
+                    }
+                    time1_m += 20;
+                    if (time1_m >= 60)
+                    {
+
+                        time1_m -= 60;
+                        time1++;
+                    }
+                    if (k > terpenie)
+                    {
+                        Console.WriteLine("Клиент " + num[i , 0] + " не дождался своей очереди и ушел");
+                        string queueElements = queue.Dequeue();
+                        k--;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Клиент " + num[i , 0] + " ушел в " + time1 + "." + time1_m);
+                        string queueElement = queue.Dequeue();
+                        k--;
+                    }
+                }
+                Console.WriteLine("Остались:");
+                foreach (string n in queue)
+                {
+                    Console.WriteLine(n);
+                }
+                k++;
+                time = time1;
+                time_m = time1_m;
             }
-            Console.WriteLine("Рабочий день окончен");
-            Console.ReadLine();
+
             Console.ReadLine();
         }
     }

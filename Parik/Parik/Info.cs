@@ -12,12 +12,12 @@ namespace Parik
         public int Time { get; set; }
         public int Time_m { get; set; }
         public int Terpenie { get; set; }
-        public Info(string name, int time,int time_m, int terpenie)
+        public Info()
         {
-            Name = name;
-            Time = time;
-            Time_m = time_m;
-            Terpenie = terpenie;
+            Name = "";
+            Time = 0;
+            Time_m = 0;
+            Terpenie = 0;
         }
     }
 }
