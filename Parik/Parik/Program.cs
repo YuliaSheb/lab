@@ -13,17 +13,6 @@ namespace Parik
         {
             Console.WriteLine("Добро пожаловать в парикмахерскую!");
             Queue<string> queue = new Queue<string>();
-            /* List<string> list = new List<string>();
-             string[] lines = File.ReadAllLines("queue.txt");
-             foreach (string s in lines)
-             {
-                 list.Add(s);
-             }
-             foreach (string i in list)
-             {
-                 Console.WriteLine(i);
-             }
-             Console.ReadLine();*/
             string[] lines = File.ReadAllLines("queue.txt");
             string[,] num = new string[lines.Length, lines[0].Split(' ').Length];
             for (int i = 0; i < lines.Length; i++)
