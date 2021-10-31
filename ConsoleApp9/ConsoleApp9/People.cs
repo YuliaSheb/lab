@@ -17,4 +17,14 @@ namespace ConsoleApp9
             Terpenie = 0;
         }
     }
+    /*
+        public class Person
+    {
+        public string? Name { get; set; }
+        public DateTime Start_date { get; set; }
+        public DateTime End_date { get; set; }
+        public int Terpenie { get; set; }
+        public Boolean IsCutted { get; set; }
+    }
+    */
 }
