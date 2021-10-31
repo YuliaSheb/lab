@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,10 +28,10 @@ namespace ConsoleApp9
             for (int i = 0; i < lines.Length; i++)
             {
                 people.Name = num[i, 0];
-                people.Time = Convert.ToInt32(num[i, 1]);
-                people.Time_m = Convert.ToInt32(num[i, 2]);
+                var date = string.Join(" ", num[i,1], num[i,2]);
+                Console.WriteLine(DateTime.ParseExact(date, "HH:mm", CultureInfo.InvariantCulture));//?? при выводе выскакивает исключение
                 people.Terpenie = Convert.ToInt32(num[i, 3]);
-                list.Add(new People() { Name = people.Name, Time = people.Time, Time_m = people.Time_m, Terpenie = people.Terpenie });
+                list.Add(new People() { Name = people.Name,date = people. , Terpenie = people.Terpenie });
             }
         }
     }

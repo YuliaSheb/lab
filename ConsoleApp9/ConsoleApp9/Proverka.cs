@@ -9,22 +9,29 @@ namespace ConsoleApp9
     class Proverka:Reader
     {
         public Queue<People> queue = new Queue<People>();
+        public List<DateTime> dates = new List<DateTime>();
         public  Proverka()
         {
+            TimeSpan ts = new TimeSpan(00, 40, 00);
+            DateTime date1 = new DateTime(00,00);
+            DateTime date_finish = new DateTime();
+            date1.ToString("HH:mm");
             foreach (People l in list)
             {
                 Console.WriteLine(list);
-                queue.Enqueue(new People() { Name = people.Name, Time = people.Time, Time_m = people.Time_m, Terpenie = people.Terpenie });
-            }
-            foreach (People q in queue)
-            {
-                people.Time_m += 20;
-                if (people.Time_m>60)
+                date1 = date;
+                date_finish = date + ts;
+                TimeSpan interval = date_finish - date1;
+                do
                 {
-                    people.Time_m -= 60;
-                    people.Time++;
+                    queue.Enqueue(new People() { Name = people.Name, date = people.date, Terpenie = people.Terpenie });
+                    dates.Add(date_finish);
+                    foreach (DateTime i in dates)
+                    {
+                        Console.WriteLine(i);
+                    }
                 }
-                Console.WriteLine(people.Time + "." + people.Time_m);
+                while (interval > ts);
             }
         }
     }
