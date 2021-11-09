@@ -1,0 +1,7 @@
+C:\Users\Юля\source\repos\Ferma\Ferma\bin\Debug\Ferma.exe.config
+C:\Users\Юля\source\repos\Ferma\Ferma\bin\Debug\Ferma.exe
+C:\Users\Юля\source\repos\Ferma\Ferma\bin\Debug\Ferma.pdb
+C:\Users\Юля\source\repos\Ferma\Ferma\obj\Debug\Ferma.csprojAssemblyReference.cache
+C:\Users\Юля\source\repos\Ferma\Ferma\obj\Debug\Ferma.csproj.CoreCompileInputs.cache
+C:\Users\Юля\source\repos\Ferma\Ferma\obj\Debug\Ferma.exe
+C:\Users\Юля\source\repos\Ferma\Ferma\obj\Debug\Ferma.pdb
