@@ -8,9 +8,13 @@ namespace Ferma
 {
     class Ducks : Animals
     {
-        public void Eat_ducks()
+        public Ducks(int food) : base(food)
         {
 
+        }
+        public override string ToString()
+        {
+            return "Eat ducks (in kg) - " + Food;
         }
         public void Feed_ducks()
         {

@@ -8,9 +8,13 @@ namespace Ferma
 {
     class Nursing:People
     {
-        public void Nursings()
+        public Nursing(int food) : base(food)
         {
 
+        }
+        public override string ToString()
+        {
+            return "Eat people (in kg) - " + Food;
         }
     }
 }

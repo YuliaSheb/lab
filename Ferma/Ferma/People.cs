@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Ferma
 {
-    class People
+    class People:Farm
     {
+        public People(int food):base(food)
+        {
+
+        }
+        public override string ToString()
+        {
+            return "Eat people (in kg) - " + Food;
+        }
     }
 }

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Ferma
 {
-    class Animals:Farm
+    class Farm
     {
-        public Animals(int food) : base(food)
+        public int Food { get; set; }  
+        public Farm(int food)
         {
-
+            Food = food;
         }
     }
 }

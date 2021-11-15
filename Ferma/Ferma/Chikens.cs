@@ -8,17 +8,22 @@ namespace Ferma
 {
     class Chikens : Animals
     {
-        public void Eat_chicken()
+        public Chikens(int food) : base(food)
         {
 
+        }
+        public override string ToString()
+        {
+            return "Eat chikens (in kg) - " + Food;
         }
         public void Feed_chicken()
         {
 
         }
-        public void Eggs()
+        public void Egg()
         {
 
         }
+       
     }
 }
