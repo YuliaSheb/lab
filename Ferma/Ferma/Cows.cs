@@ -12,6 +12,10 @@ namespace Ferma
         {
 
         }
+        public Cows()
+        {
+
+        }
         public override string ToString()
         {
             return "Eat cows (in kg) - " + Food;

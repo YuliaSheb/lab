@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Farm.cs" />
+    <Compile Include="Farm_tenant.cs" />
     <Compile Include="People.cs" />
     <Compile Include="Shepherd.cs" />
     <Compile Include="Nursing.cs" />

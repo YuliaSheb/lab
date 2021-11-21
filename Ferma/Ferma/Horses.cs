@@ -8,14 +8,23 @@ namespace Ferma
 {
     class Horses:Animals
     {
-        public int Endurance { get; set; }
-        public Horses(int food, int endurance) : base(food)
+        protected int Endurance { get; set; }
+        public Horses(int food, int endurance):base(food) 
         {
             Endurance = endurance;
         }
         public override string ToString()
         {
             return "Eat horses (in kg) - " + Food;
+
+        }
+        public Horses(int food) : base(food)
+        {
+           
+        }
+        public Horses()
+        {
+            
         }
         public void Eat_horses()
         {

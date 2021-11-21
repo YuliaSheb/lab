@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace Ferma
 {
-    class Animals:Farm_tenant
+    class Farm_tenant
     {
-        public Animals(int food) : base(food)
+        protected int Food { get; set; }  
+        public Farm_tenant(int food)
+        {
+            Food = food;
+        }
+        public Farm_tenant()
         {
             
-        }
-        public Animals()
-        {
-
         }
     }
 }

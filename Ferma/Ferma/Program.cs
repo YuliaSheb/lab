@@ -8,35 +8,48 @@ namespace Ferma
 {
     class Program
     {
-        static void Main(string[] args)
+        enum Tenants
         {
-            int[] array = { 10, 5, 4, 8, 6, 15 };
-            int sum = 0, en;
-            People people = new People(array[0]);
+            People = 3, 
+            Chiken = 5,
+            Duck = 4,
+            Cow = 8,
+            Dog = 6,
+            Horse = 10,
+            Endurence = 5      
+        }
+        static void Opred()
+        {
+            People people = new People((int)Tenants.People);
             Console.WriteLine(people);
-            Chikens chikens = new Chikens(array[1]);
+            Chikens chikens = new Chikens((int)Tenants.Chiken);
             Console.WriteLine(chikens);
-            Ducks ducks = new Ducks(array[2]);
+            Ducks ducks = new Ducks((int)Tenants.Duck);
             Console.WriteLine(ducks);
-            Cows cows = new Cows(array[3]);
+            Cows cows = new Cows((int)Tenants.Cow);
             Console.WriteLine(cows);
-            Dogs dogs = new Dogs(array[4]);
+            Dogs dogs = new Dogs((int)Tenants.Dog);
             Console.WriteLine(dogs);
-            Console.WriteLine("Введите выносливость лошади (сколько кг может везти):");
-            en = Convert.ToInt32(Console.ReadLine());
-            Horses horses = new Horses(array[5],en);
+            Horses horses = new Horses((int)Tenants.Horse, (int)Tenants.Endurence);
             Console.WriteLine(horses);
-            for (int i=0; i< array.Length; i++)
+        }
+        static int Calc()
+        {
+            int sum = 0;
+            sum = (int)Tenants.People + (int)Tenants.Chiken + (int)Tenants.Duck + (int)Tenants.Cow + (int)Tenants.Dog + (int)Tenants.Horse;
+            int k = 1;
+            while ((int)Tenants.Endurence < sum)
             {
-                sum += array[i];
-            }
-            int k=1;
-            while (en < sum)
-            {
-                sum -= en;
+                sum -= (int)Tenants.Endurence;
                 k++;
             }
-            Console.WriteLine("Чтобы привезти еду необходимо "+k+" лошадей");
+            Console.WriteLine("Чтобы привезти еду необходимо " + k + " лошадей");
+            return k;
+        }
+        static void Main(string[] args)
+        {
+            Opred();
+            Calc();
             Console.ReadKey();
         }
     }
