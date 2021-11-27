@@ -8,7 +8,7 @@ namespace Ferma
 {
     class Farm_tenant
     {
-        protected int Food { get; set; }  
+        public int Food { get; set; }  
         public Farm_tenant(int food)
         {
             Food = food;

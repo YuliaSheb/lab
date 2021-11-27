@@ -41,16 +41,65 @@ namespace Ferma
         }
         static int Calc(int value_people, int value_chiken, int value_duck, int value_cow, int value_dog, int value_horse)
         {
-            int sum = 0;
-            sum = value_people*(int)Tenants.People + value_chiken*(int)Tenants.Chiken + value_duck * (int)Tenants.Duck + value_cow * (int)Tenants.Cow + value_dog * (int)Tenants.Dog + value_horse * (int)Tenants.Horse;
-            int k = 1;
+            int k;
+            List<Farm_tenant> tenants = new List<Farm_tenant>();
+            for (k = 0; k < value_people; k++)
+            {
+                tenants.Add(new People((int)Tenants.People));
+            }
+            for (k = 0; k < value_chiken; k++)
+            {
+                tenants.Add(new Chikens((int)Tenants.Chiken));
+            }
+            for (k = 0; k < value_duck; k++)
+            {
+                 tenants.Add(new Ducks((int)Tenants.Duck));
+            }
+            for (k = 0; k < value_cow; k++)
+            {
+                 tenants.Add(new Cows((int)Tenants.Cow));
+            }
+            for (k = 0; k < value_dog; k++)
+            {
+                 tenants.Add(new Dogs((int)Tenants.Dog));
+            }
+            for (k = 0; k < value_horse; k++)
+            {
+                 tenants.Add(new Horses((int)Tenants.Horse));
+            }
+            var sum = tenants.Sum(t=>t.Food);
+            int n = 1;
             while ((int)Tenants.Endurence < sum)
             {
                 sum -= (int)Tenants.Endurence;
-                k++;
+                n++;
             }
-            Console.WriteLine("Чтобы привезти еду необходимо " + k + " лошадей");
-            return k;
+            Console.WriteLine("Чтобы привезти еду для всех, необходимо " + n + " лошадей");
+            var sum_people = tenants.Where(t => t.Food == (int)Tenants.People).Sum(t => t.Food);
+            int z = 1;
+            while ((int)Tenants.Endurence < sum_people)
+            {
+                sum_people -= (int)Tenants.Endurence;
+                z++;
+            }
+            Console.WriteLine("Чтобы привезти еду для людей, необходимо " + z + " лошадей");
+            var sum_horses = tenants.Where(t => t.Food == (int)Tenants.Horse).Sum(t => t.Food);
+            int p = 1;
+            while ((int)Tenants.Endurence < sum_horses)
+            {
+                sum_horses -= (int)Tenants.Endurence;
+                p++;
+            }
+            Console.WriteLine("Чтобы привезти еду для лошадей, необходимо " + p + " лошадей");
+            var sum_birds = tenants.Where(t => t.Food == (int)Tenants.Chiken || t.Food == (int)Tenants.Duck).Sum(t => t.Food);
+            int b = 1;
+            while ((int)Tenants.Endurence < sum_birds)
+            {
+                sum_birds -= (int)Tenants.Endurence;
+                b++;
+            }
+            Console.WriteLine("Чтобы привезти еду для пернатых, необходимо " + b + " лошадей");
+            return n;
         }
         static void Main(string[] args)
         {
