@@ -8,7 +8,7 @@ namespace Ferma
 {
     class People:Farm_tenant
     {
-        public People(int food) : base(food)
+        public People(int food,string opred) : base(food,opred)
         {
 
         }

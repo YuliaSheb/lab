@@ -9,7 +9,7 @@ namespace Ferma
     class Horses:Animals
     {
         protected int Endurance { get; set; }
-        public Horses(int food, int endurance):base(food) 
+        public Horses(int food, int endurance, string opred):base(food,opred) 
         {
             Endurance = endurance;
         }
@@ -18,7 +18,7 @@ namespace Ferma
             return "Eat horses (in kg) - " + Food;
 
         }
-        public Horses(int food) : base(food)
+        public Horses(int food, string opred) : base(food,opred)
         {
            
         }
