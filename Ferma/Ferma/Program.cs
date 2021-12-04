@@ -15,9 +15,9 @@ namespace Ferma
             Duck = 2,
             Cow = 4,
             Dog = 3,
-            Horse = 5,
-            Endurence = 5      
+            Horse = 5,   
         }
+        private static readonly int Endurence = 5;
         static void Opred(int value_people, int value_chiken,int  value_duck, int value_cow, int value_dog, int value_horse)
         {
             People people = new People((int)Tenants.People,"People");
@@ -35,17 +35,17 @@ namespace Ferma
             Dogs dogs = new Dogs((int)Tenants.Dog,"Dog");
             Dogs[] d = new Dogs[value_dog];
             Console.WriteLine(dogs);
-            Horses horses = new Horses((int)Tenants.Horse, (int)Tenants.Endurence, "Horse");
+            Horses horses = new Horses((int)Tenants.Horse, Endurence, "Horse");
             Horses[] h = new Horses[value_horse];
             Console.WriteLine(horses);
         }
-        static int Calc(int value_people, int value_chiken, int value_duck, int value_cow, int value_dog, int value_horse)
+        static List<Farm_tenant> Init(int value_people, int value_chiken, int value_duck, int value_cow, int value_dog, int value_horse)
         {
             int k;
             List<Farm_tenant> tenants = new List<Farm_tenant>();
             for (k = 0; k < value_people; k++)
             {
-                tenants.Add(new People((int)Tenants.People,"People"));
+                tenants.Add(new People((int)Tenants.People, "People"));
             }
             for (k = 0; k < value_chiken; k++)
             {
@@ -53,49 +53,53 @@ namespace Ferma
             }
             for (k = 0; k < value_duck; k++)
             {
-                 tenants.Add(new Ducks((int)Tenants.Duck, "Duck"));
+                tenants.Add(new Ducks((int)Tenants.Duck, "Duck"));
             }
             for (k = 0; k < value_cow; k++)
             {
-                 tenants.Add(new Cows((int)Tenants.Cow, "Cow"));
+                tenants.Add(new Cows((int)Tenants.Cow, "Cow"));
             }
             for (k = 0; k < value_dog; k++)
             {
-                 tenants.Add(new Dogs((int)Tenants.Dog, "Dog"));
+                tenants.Add(new Dogs((int)Tenants.Dog, "Dog"));
             }
             for (k = 0; k < value_horse; k++)
             {
-                 tenants.Add(new Horses((int)Tenants.Horse, "Horse"));
+                tenants.Add(new Horses((int)Tenants.Horse, "Horse"));
             }
+            return tenants;
+        }
+        static int Calc(List<Farm_tenant> tenants)
+        {
             var sum = tenants.Sum(t=>t.Food);
             int n = 1;
-            while ((int)Tenants.Endurence < sum)
+            while (Endurence < sum)
             {
-                sum -= (int)Tenants.Endurence;
+                sum -= Endurence;
                 n++;
             }
             Console.WriteLine("Чтобы привезти еду для всех, необходимо " + n + " лошадей");
-                var sum_people = tenants.Where(t=>t.Opred=="People").Sum(t => t.Food);
+                var sum_people = tenants.Where(t => typeof(People).IsInstanceOfType(t)).Sum(t => t.Food);
             int z = 1;
-            while ((int)Tenants.Endurence < sum_people)
+            while (Endurence < sum_people)
             {
-                sum_people -= (int)Tenants.Endurence;
+                sum_people -= Endurence;
                 z++;
             }
             Console.WriteLine("Чтобы привезти еду для людей, необходимо " + z + " лошадей");
-            var sum_horses = tenants.Where(t => t.Opred == "Horse").Sum(t => t.Food);
+            var sum_horses = tenants.Where(t => typeof(Horses).IsInstanceOfType(t)).Sum(t => t.Food);
             int p = 1;
-            while ((int)Tenants.Endurence < sum_horses)
+            while (Endurence < sum_horses)
             {
-                sum_horses -= (int)Tenants.Endurence;
+                sum_horses -= Endurence;
                 p++;
             }
             Console.WriteLine("Чтобы привезти еду для лошадей, необходимо " + p + " лошадей");
-            var sum_birds = tenants.Where(t => t.Opred == "Chiken" || t.Opred == "Duck").Sum(t => t.Food);
+            var sum_birds = tenants.Where(t =>( typeof(Chikens).IsInstanceOfType(t) || typeof(Ducks).IsInstanceOfType(t))).Sum(t => t.Food);
             int b = 1;
-            while ((int)Tenants.Endurence < sum_birds)
+            while (Endurence < sum_birds)
             {
-                sum_birds -= (int)Tenants.Endurence;
+                sum_birds -= Endurence;
                 b++;
             }
             Console.WriteLine("Чтобы привезти еду для пернатых, необходимо " + b + " лошадей");
@@ -105,7 +109,8 @@ namespace Ferma
         {
             int value_people = 30, value_chiken = 15, value_duck = 7, value_cow = 10, value_dog = 5, value_horse = 25;
             Opred(value_people, value_chiken , value_duck , value_cow , value_dog, value_horse );
-            Calc(value_people, value_chiken, value_duck, value_cow, value_dog, value_horse);
+            var tenants = Init(value_people, value_horse, value_cow, value_duck, value_chiken, value_dog);
+            Calc(tenants);
             Console.ReadKey();
         }
     }
