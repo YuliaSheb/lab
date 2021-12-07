@@ -8,7 +8,7 @@ namespace Ferma
 {
     class Shepherd:People
     {
-        public Shepherd(int food,string opred) : base(food,opred)
+        public Shepherd(int food) : base(food)
         {
 
         }

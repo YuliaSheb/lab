@@ -8,7 +8,12 @@ namespace Ferma
 {
     class Chikens : Animals
     {
-        public Chikens(int food,string opred) : base(food,opred)
+        int _value_product = 9;
+        int _cost = 3;
+        public int Cost { get { return _cost; } }
+        public int Value { get { return _value_product; } }
+        public void Put(int value) { _value_product = value * _value_product * _cost * 31; }
+        public Chikens(int food) : base(food)
         {
 
         }

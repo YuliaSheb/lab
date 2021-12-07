@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace Ferma
 {
-    class Cows : Animals
+    class Cows : Animals,IProduct
     {
-        public Cows(int food,string opred) : base(food,opred)
+        int _value_product = 10;
+        int _cost = 4;
+        public int Cost { get { return _cost; } }
+        public int Value { get { return _value_product; } }
+        public void Put(int value) { _value_product = value * _value_product * _cost*31; }
+        public Cows(int food) : base(food)
         {
 
         }

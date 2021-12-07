@@ -8,7 +8,7 @@ namespace Ferma
 {
     class Nursing:People
     {
-        public Nursing(int food,string opred) : base(food,opred)
+        public Nursing(int food) : base(food)
         {
 
         }

@@ -9,11 +9,9 @@ namespace Ferma
     class Farm_tenant
     {
         public int Food { get; set; }
-        public string Opred { get; set; }
-        public Farm_tenant(int food,string opred)
+        public Farm_tenant(int food)
         {
             Food = food;
-            Opred = opred;
         }
         public Farm_tenant()
         {

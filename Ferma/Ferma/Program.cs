@@ -20,22 +20,22 @@ namespace Ferma
         private static readonly int Endurence = 5;
         static void Opred(int value_people, int value_chiken,int  value_duck, int value_cow, int value_dog, int value_horse)
         {
-            People people = new People((int)Tenants.People,"People");
+            People people = new People((int)Tenants.People);
             People[] p = new People[value_people];
             Console.WriteLine(people);
-            Chikens chikens = new Chikens((int)Tenants.Chiken,"Chiken");
+            Chikens chikens = new Chikens((int)Tenants.Chiken);
             Chikens[] ch = new Chikens[value_chiken];
             Console.WriteLine(chikens);
-            Ducks ducks = new Ducks((int)Tenants.Duck,"Duck");
+            Ducks ducks = new Ducks((int)Tenants.Duck);
             Ducks[] du = new Ducks[value_duck];
             Console.WriteLine(ducks);
-            Cows cows = new Cows((int)Tenants.Cow,"Cow");
+            Cows cows = new Cows((int)Tenants.Cow);
             Cows[] c = new Cows[value_cow];
             Console.WriteLine(cows);
-            Dogs dogs = new Dogs((int)Tenants.Dog,"Dog");
+            Dogs dogs = new Dogs((int)Tenants.Dog);
             Dogs[] d = new Dogs[value_dog];
             Console.WriteLine(dogs);
-            Horses horses = new Horses((int)Tenants.Horse, Endurence, "Horse");
+            Horses horses = new Horses((int)Tenants.Horse, Endurence);
             Horses[] h = new Horses[value_horse];
             Console.WriteLine(horses);
         }
@@ -45,27 +45,27 @@ namespace Ferma
             List<Farm_tenant> tenants = new List<Farm_tenant>();
             for (k = 0; k < value_people; k++)
             {
-                tenants.Add(new People((int)Tenants.People, "People"));
+                tenants.Add(new People((int)Tenants.People));
             }
             for (k = 0; k < value_chiken; k++)
             {
-                tenants.Add(new Chikens((int)Tenants.Chiken, "Chiken"));
+                tenants.Add(new Chikens((int)Tenants.Chiken));
             }
             for (k = 0; k < value_duck; k++)
             {
-                tenants.Add(new Ducks((int)Tenants.Duck, "Duck"));
+                tenants.Add(new Ducks((int)Tenants.Duck));
             }
             for (k = 0; k < value_cow; k++)
             {
-                tenants.Add(new Cows((int)Tenants.Cow, "Cow"));
+                tenants.Add(new Cows((int)Tenants.Cow));
             }
             for (k = 0; k < value_dog; k++)
             {
-                tenants.Add(new Dogs((int)Tenants.Dog, "Dog"));
+                tenants.Add(new Dogs((int)Tenants.Dog));
             }
             for (k = 0; k < value_horse; k++)
             {
-                tenants.Add(new Horses((int)Tenants.Horse, "Horse"));
+                tenants.Add(new Horses((int)Tenants.Horse));
             }
             return tenants;
         }
@@ -105,12 +105,25 @@ namespace Ferma
             Console.WriteLine("Чтобы привезти еду для пернатых, необходимо " + b + " лошадей");
             return n;
         }
+        static void Price(int value_chicken, int value_duck, int value_cow)
+        {
+            Ducks duck = new Ducks();
+            duck.Put(value_duck);
+            Console.WriteLine("Доход от уток за декабрь составляет " + duck.Value + " рублей.");
+            Chikens chik = new Chikens();
+            chik.Put(value_chicken);
+            Console.WriteLine("Доход от куриц за декабрь  составляет " + chik.Value + " рублей.");
+            Cows cow = new Cows();
+            cow.Put(value_cow);
+            Console.WriteLine("Доход от коров за декабрь составляет " + cow.Value + " рублей.");
+        }
         static void Main(string[] args)
         {
             int value_people = 30, value_chiken = 15, value_duck = 7, value_cow = 10, value_dog = 5, value_horse = 25;
             Opred(value_people, value_chiken , value_duck , value_cow , value_dog, value_horse );
             var tenants = Init(value_people, value_horse, value_cow, value_duck, value_chiken, value_dog);
             Calc(tenants);
+            Price(value_chiken, value_duck, value_cow);
             Console.ReadKey();
         }
     }
