@@ -8,8 +8,8 @@ namespace Ferma
 {
     interface IProduct
     {
-       int Cost { get; }
-        int Value { get; }
-        void Put(int value_product);
+         int Value { get; }
+        const int cost = 77;
+        static int GetCost(int value) => value*cost;
     }
 }

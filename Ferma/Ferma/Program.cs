@@ -108,14 +108,20 @@ namespace Ferma
         static void Price(int value_chicken, int value_duck, int value_cow)
         {
             Ducks duck = new Ducks();
-            duck.Put(value_duck);
-            Console.WriteLine("Доход от уток за декабрь составляет " + duck.Value + " рублей.");
+            int d = duck.Value;
+            Console.WriteLine(d);
+            int doxod_duck = IProduct.GetCost(d)*value_duck;
+            Console.WriteLine("Доход от уток составляет " + doxod_duck + " рублей.");
             Chikens chik = new Chikens();
-            chik.Put(value_chicken);
-            Console.WriteLine("Доход от куриц за декабрь  составляет " + chik.Value + " рублей.");
+            int ch = chik.Value;
+            Console.WriteLine(ch);
+            int doxod_chiken = IProduct.GetCost(ch)*value_chicken;
+            Console.WriteLine("Доход от куриц за декабрь  составляет " + doxod_chiken + " рублей.");
             Cows cow = new Cows();
-            cow.Put(value_cow);
-            Console.WriteLine("Доход от коров за декабрь составляет " + cow.Value + " рублей.");
+            int c = cow.Value;
+            Console.WriteLine(c);
+            int doxod_cow = IProduct.GetCost(c)*value_cow;
+            Console.WriteLine("Доход от коров за декабрь составляет " + doxod_cow + " рублей.");
         }
         static void Main(string[] args)
         {

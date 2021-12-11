@@ -9,10 +9,7 @@ namespace Ferma
     class Ducks : Animals,IProduct
     {
         int _value_product = 7 ;
-        int _cost = 2;
-        public int Cost { get { return _cost; } }
         public int Value { get { return _value_product; } }
-        public void Put(int value) { _value_product = value * _value_product * _cost * 31; }
         public Ducks(int food) : base(food)
         {
 
